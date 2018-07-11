@@ -9,16 +9,11 @@
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 <div id="container" style="height: 400px; min-width: 600px"></div>
-
-
-
 </body>
 <script   >
     
-
 var seriesOptions = [],
     seriesCounter = 0,
-   // names = ['a', 'b', 'c'];
     names = ['a','b'];
 
 /**
@@ -53,35 +48,23 @@ function createChart() {
 
  $.each(names, function (i,name) {
 
-   // $.getJSON('https://chatluongnuoc.org/data_' + name.toLowerCase()+'.json',   function (data) {
-   // $.getJSON("data_"+ name.toLowerCase() + ".json",    function (data) {
+    $.getJSON('data_' + name.toLowerCase()+'.json',   function (data) {
 
-        seriesOptions[0] = {
-            name: 'a',
-            data:[{"1294617600000","48.40"},
-{"1294704000000","40.27"},
-{"1294790400000","49.04"},
-]
+        seriesOptions[i] = {
+            name: name,
+            data: data
         };
-seriesOptions[1] = {
-            name: 'b',
-            data:[{"1294617600000","9.03"},
-{"1294704000000","9.28"},
-{"1294790400000","19.20"},
-]
-        };
+
         // As we're loading the data asynchronously, we don't know what order it will arrive. So
         // we keep a counter and create the chart when all the data is loaded.
-        //seriesCounter += 1;
+        seriesCounter += 1;
 
-        //if (seriesCounter === names.length) {
+        if (seriesCounter === names.length) {
             createChart();
-       // }
-    //});
+        }
+    });
 
 });
-
-
 
 </script>
 </html>
