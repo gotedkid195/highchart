@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chart</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+<div id="container" style="height: 400px; min-width: 600px"></div>
+
+
+
+</body>
+<script   >
+    
+
+var seriesOptions = [],
+    seriesCounter = 0,
+   // names = ['a', 'b', 'c'];
+    names = ['a','b'];
+
+/**
+ * Create the chart when all data is loaded
+ */
+function createChart() {
+
+    Highcharts.stockChart('container', {
+
+        rangeSelector: {
+            selected: 4
+        },
+
+        legend: {
+            enabled: true
+        },
+
+        plotOptions: {
+            series: {
+               showInNavigator: true,
+            }
+        },
+
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y} USD</b><br/>',
+            valueDecimals: 2
+        },
+
+        series: seriesOptions
+    });
+}
+
+ $.each(names, function (i,name) {
+
+   // $.getJSON('https://chatluongnuoc.org/data_' + name.toLowerCase()+'.json',   function (data) {
+   // $.getJSON("data_"+ name.toLowerCase() + ".json",    function (data) {
+
+        seriesOptions[0] = {
+            name: 'a',
+            data:[{"1294617600000","48.40"},
+{"1294704000000","40.27"},
+{"1294790400000","49.04"},
+]
+        };
+seriesOptions[1] = {
+            name: 'b',
+            data:[{"1294617600000","9.03"},
+{"1294704000000","9.28"},
+{"1294790400000","19.20"},
+]
+        };
+        // As we're loading the data asynchronously, we don't know what order it will arrive. So
+        // we keep a counter and create the chart when all the data is loaded.
+        //seriesCounter += 1;
+
+        //if (seriesCounter === names.length) {
+            createChart();
+       // }
+    //});
+
+});
+
+
+
+</script>
+</html>
