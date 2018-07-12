@@ -89,12 +89,9 @@ $.each(names, function (i, name) {
             seriesOptions[i] = {
                 name: name,
                 data:data        };
-
-         seriesCounter += 1;
-
-        if (seriesCounter === names.length) {
+                 
              createChart();
-         }
+     
      }
     });
 });
