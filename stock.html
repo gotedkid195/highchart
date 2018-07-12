@@ -74,29 +74,22 @@ function createChart() {
     });
 }
 
-$.each(names, function (i, name) {
-
-    //$.getJSON('https://track.teslateq.vn/vv.php',    function (data) {
-     //      $.getJSON('https://www.highcharts.com/samples/data/' + name.toLowerCase() + '-c.json',    function (data) {
-      // var urls='data_'+name.toLowerCase()+'.json';
+$.each(names, function (i, name) { 
+ //  $.getJSON('https://www.highcharts.com/samples/data/' + name.toLowerCase() + '-c.json',    function (data) {
+ // var urls='data_'+name.toLowerCase()+'.json';
        var urls='data_'+name.toLowerCase()+'.php';
      //   console.log(urls);
          $.ajax({
             type : 'POST', //kiểu post
             url  : urls,
             dataType:'json',  
-        //  // data : {
-        //  //   bd: ngaybd
-        //  // },
+
              success : function(data){//
-           // console.log(data);
-            //var seriesOptions=[];
+           // console.log(data);     
             seriesOptions[i] = {
                 name: name,
                 data:data        };
 
-        // As we're loading the data asynchronously, we don't know what order it will arrive. So
-        // we keep a counter and create the chart when all the data is loaded.
          seriesCounter += 1;
 
         if (seriesCounter === names.length) {
@@ -105,7 +98,6 @@ $.each(names, function (i, name) {
      }
     });
 });
-
 
 </script>
 </html>
